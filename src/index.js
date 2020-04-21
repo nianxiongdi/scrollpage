@@ -9,6 +9,7 @@ class Main extends React.Component {
         super(props);
 
         this.state = {
+            pageStart:0,
             dataSource: new Array(20).fill(2),
         }
 

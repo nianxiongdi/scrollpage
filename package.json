@@ -1,6 +1,6 @@
 {
   "name": "scrollpage-react",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "test this npm package.",
   "main": "lib/index.js",
   "scripts": {
@@ -11,6 +11,10 @@
   },
   "author": "nianxiongdi",
   "license": "ISC",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/nianxiongdi/scrollpage"
+  },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",

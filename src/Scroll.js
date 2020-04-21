@@ -57,12 +57,11 @@ export default class ScrollPage extends React.Component {
     }
 
     componentDidUpdate() {
-        this.attachScrollListener();
+        let scrollContainer = this.getScrollContainer();
+        scrollContainer.addEventListener('scroll', this.scrollFunction , false);
+        scrollContainer.addEventListener('resize', this.scrollFunction , false);
     }
-
-    componentDidUpdate() {
-
-    }
+ 
     render() {
         const {
             element: Tag,
