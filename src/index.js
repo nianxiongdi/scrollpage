@@ -9,7 +9,6 @@ class Main extends React.Component {
         super(props);
 
         this.state = {
-            pageStart: 0,
             dataSource: new Array(20).fill(2),
         }
 
@@ -17,7 +16,7 @@ class Main extends React.Component {
     }
 
     loadMore() {
-        console.log('～～～需要分页～～～');
+        // call api
         this.setState({
             dataSource: this.state.dataSource.concat(new Array(20).fill(2))
         })
@@ -30,9 +29,6 @@ class Main extends React.Component {
                     loadMore={this.loadMore}
                     threshold={300}
                     >
-                <div>
-                    123
-                </div>
             <List dataSource={dataSource}/>
         </ScrollPage>)
     }

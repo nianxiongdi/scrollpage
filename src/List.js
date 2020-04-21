@@ -13,7 +13,7 @@ export default class List extends React.Component {
         const { dataSource } = this.props;
 
         return (
-            <div id="abc">
+            <div>
                  {
                     dataSource.map((item, index) => 
                         <div key={index} style={{width: '300px', height: '300px', border: '1px solid red', margin: '10px', display:'inline-block'}}>
