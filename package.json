@@ -1,6 +1,6 @@
 {
   "name": "scrollpage-react",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "test this npm package.",
   "main": "lib/index.js",
   "scripts": {
