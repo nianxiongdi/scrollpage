@@ -1,48 +1,82 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+ 
+export default class ScrollPage extends React.Component {
 
-import ScrollPage from './Scroll'
-import List from './List'
-
-class Main extends React.Component {
+    static propTypes = {
+        element: PropTypes.node,
+        threshold: PropTypes.number
+    };
+    
+    static defaultProps = {
+        element: 'div',
+        threshold: 300
+    };
+    
 
     constructor(props) {
         super(props);
+    }
+ 
+    getScrollContainer() {
+        const { container } = this.props;
+        if (typeof container === 'function') {
+          return container();
+        }
+    
+        return window;
+    }
 
-        this.state = {
-            pageStart:0,
-            dataSource: new Array(20).fill(2),
+    componentDidMount() {
+
+        let scrollContainer = this.getScrollContainer();
+        scrollContainer.addEventListener('scroll', this.scrollFunction , false);
+        scrollContainer.addEventListener('resize', this.scrollFunction , false);
+    }
+
+    scrollFunction = ()=> {
+
+        const {
+            threshold,
+            loadMore
+        } = this.props;
+
+        let container;
+        if(!this.props.container) {
+            container = document.body || document.documentElement || document.body.parentNode;
+        }else {
+            container = this.getScrollContainer();
         }
 
-        this.loadMore = this.loadMore.bind(this);
+        const offset = container.scrollHeight - container.clientHeight - container.scrollTop;
+            
+        if(offset < threshold) {
+            loadMore();
+        }
+        
     }
 
-    loadMore() {
-        // call api
-        this.setState({
-            dataSource: this.state.dataSource.concat(new Array(20).fill(2))
-        })
+    componentDidUpdate() {
+        let scrollContainer = this.getScrollContainer();
+        scrollContainer.addEventListener('scroll', this.scrollFunction , false);
+        scrollContainer.addEventListener('resize', this.scrollFunction , false);
+    }
+ 
+    render() {
+        const {
+            element: Tag,
+            loader,
+            hasMore,
+            className,
+            style,
+        } = this.props;
+
+        return (
+            <Tag className={className} style={style}>
+                { this.props.children }
+                { hasMore && loader ? loader : null }
+            </Tag>
+        );
     }
 
-
-    render(){
-        const { dataSource } = this.state;
-        return (<ScrollPage
-                    loadMore={this.loadMore}
-                    threshold={300}
-                    >
-            <List dataSource={dataSource}/>
-        </ScrollPage>)
-    }
 }
-
-/* 
-    发布学习： https://github.com/crazylxr/react-demo
-*/
-
-const ReactDemo = () => (
-    <Main />
-);
-
-
-
-export default ReactDemo;
