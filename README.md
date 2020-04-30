@@ -1,8 +1,12 @@
 
 
 # scrollpage-react
+[![NPM version](https://img.shields.io/npm/v/scrollpage-react)](https://www.npmjs.com/package/scrollpage-react)
+
+
 
 我们在浏览淘宝(浏览商品)，微信(好友列表，朋友圈)，QQ(好友列表，空间)和百度图片的时候，需要对页面进行一定的性能优化。若是淘宝用户搜索的商品进行全部展示，会影响页面的性能，针对这个问题，可以选择设置`overflow:scroll`和`对相同的item进行懒加载`等方法进行优化。本文使用滑动分页的方式进行懒加载，这样可以增加用户的体验，而且不影响页面的性能。
+
 
 # install
 
